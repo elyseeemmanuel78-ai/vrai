@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPIPS - Simulated Funded Trading</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+   <nav class="navbar">
+    <div class="logo">X<span>PIPS</span></div>
+
+    <input type="checkbox" id="menu-toggle-input" class="menu-checkbox">
+    
+    <label for="menu-toggle-input" class="menu-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </label>
+
+   <ul class="nav-links">
+    <li><a href="#">Qualif</a></li>
+    <li><a href="#">Affiliate</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">FAQs</a></li>
+    
+   
+</ul>
+   
+
+    <div class="nav-auth">
+        <a href="#" class="btn-login">Login</a>
+        <a href="#" class="btn-dashboard">Dashboard</a>
+    </div>
+    
+</nav>
+
+    <header class="hero">
+        <div class="logo-large">X<span>PIPS</span></div>
+        <h1>Your Journey To Simulated <span class="highlight">Funded Trading</span></h1>
+        <h2>Your Journey To Simulated</h2>
+        <p class="subtitle">Join XPIPS And Access Up To <strong>$400,000</strong> In Simulated Capital. We Support Serious Traders.</p>
+        
+        <div class="trust-badges">
+            <span class="trustpilot">Excellent ⭐⭐⭐⭐⭐ Trustpilot</span>
+            <span class="unlisted-firm">#2 Unlisted Firm</span>
+        </div>
+
+        <div class="hero-btns">
+            <button class="btn-primary">Start Trading</button>
+           
+        </div>
+    </header>
+
+    <section class="stats">
+        <div class="stat-item">
+            <h3>140+</h3>
+            <p>Countries</p>
+        </div>
+        <div class="stat-item">
+            <h3>65K+</h3>
+            <p>Qualified Analysts</p>
+        </div>
+        <div class="stat-item">
+            <h3>750K+</h3>
+            <p>Traders</p>
+        </div>
+        <div class="stat-item">
+            <h3>10K</h3>
+            <p>Virtual Strategies</p>
+        </div>
+        <div class="stat-item">
+            <h3>$100M+</h3>
+            <p>Performance Fee</p>
+        </div>
+    </section>
+    <script>
+    const menu = document.querySelector('#mobile-menu');
+    const menuLinks = document.querySelector('#nav-list');
+
+    menu.addEventListener('click', function() {
+        // Ajoute ou retire la classe .active quand on clique
+        menuLinks.classList.toggle('active');
+        
+        // Petit bonus : anime le burger en X
+        menu.classList.toggle('is-active');
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+       /**
+ * FONCTION : Découpe le texte proprement
+ */
+function prepareText(selector) {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    const text = el.innerText;
+    el.innerHTML = "";
+    [...text].forEach(char => {
+        const span = document.createElement("span");
+        span.innerText = char === " " ? "\u00A0" : char;
+        span.classList.add("letter"); // On utilise une classe simple
+        el.appendChild(span);
+    });
+}
+
+/**
+ * ANIMATION : Séquence ordonnée
+ */
+window.addEventListener('DOMContentLoaded', () => {
+    // Préparation des titres
+    prepareText('h1');
+    prepareText('h2');
+
+    // Création de la timeline GSAP
+    const tl = gsap.timeline();
+
+    // 1. Navbar : Apparition nette
+    tl.to(".navbar", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    });
+
+    // 2. Lettres : Apparition par glissement court (15px)
+    // Le secret du sérieux : un stagger très rapide (0.01s)
+    tl.from(".letter", {
+        opacity: 0,
+        y: 15,
+        stagger: 0.015,
+        duration: 0.7,
+        ease: "power1.out"
+    }, "-=0.4");
+
+    // 3. Stats et Dashboard : Montée en bloc
+    // On groupe les éléments pour éviter l'effet "désordre"
+    tl.from(".stat-item, .dashboard-preview", {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        stagger: 0.1, // Un léger décalage entre les blocs de stats
+        ease: "power2.out"
+    }, "-=0.5");
+});
+    </script>
+    
+</body>
+
+
+</body>
+</html>

@@ -1,0 +1,389 @@
+:root {
+    --bg-dark: #020617;
+    --primary-blue: #2563eb;
+    --accent-blue: #3b82f6;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    /* Dégradé radial pour l'effet de lumière bleue en arrière-plan */
+    background: radial-gradient(circle at top center, #0a173d 0%, #020617 70%);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- Navigation --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+}
+
+.logo { font-size: 24px; font-weight: 800; letter-spacing: 2px; }
+.logo span { color: var(--accent-blue); }
+
+.nav-links { display: flex; list-style: none; gap: 30px; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; transition: 0.3s; }
+.nav-links a:hover { color: white; }
+
+.btn-dashboard {
+    border: 1px solid var(--text-muted);
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    margin-left: 15px;
+}
+
+/* --- Hero Section --- */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.logo-large { font-size: 40px; font-weight: 800; margin-bottom: 20px; }
+
+h1 { font-size: 48px; font-weight: 800; margin-bottom: 10px; }
+.highlight { color: var(--accent-blue); }
+
+h2 { font-size: 32px; opacity: 0.8; margin-bottom: 20px; }
+
+.subtitle { color: var(--text-muted); max-width: 600px; margin: 0 auto 30px; }
+
+.trust-badges { margin-bottom: 40px; font-size: 13px; }
+.trust-badges span { margin: 0 15px; color: #10b981; } /* Vert Trustpilot */
+
+.btn-primary {
+    background: linear-gradient(to right, #1d4ed8, #3b82f6);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.link-learn { color: white; margin-left: 20px; text-decoration: underline; }
+
+/* --- Stats Section --- */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 50px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 50px;
+}
+
+.stat-item h3 { font-size: 28px; margin-bottom: 5px; }
+.stat-item p { color: var(--text-muted); font-size: 14px; }
+
+/* --- Dashboard Preview (L'effet de carte en bas) --- */
+.dashboard-preview {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background: var(--glass-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -20px 40px rgba(0,0,0,0.5);
+}
+/* Quand l'écran fait moins de 1024px de large */
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none; /* Cache les liens de navigation sur tablette/mobile */
+    }
+
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+}
+
+/* Ajustement des boutons pour qu'ils ne débordent pas */
+@media (max-width: 480px) {
+    .nav-auth {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .btn-dashboard {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .btn-login {
+        font-size: 12px;
+    }
+}
+/* Cache le burger par défaut sur ordinateur */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* --- Responsive (Tablette et Mobile) --- */
+@media (max-width: 1024px) {
+    .menu-toggle {
+        display: flex; /* Affiche le burger */
+    }
+
+    .nav-links {
+        display: none; /* Cache les liens horizontaux */
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #020617;
+        padding: 20px 0;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        z-index: 100;
+    }
+
+    /* La classe "active" sera ajoutée par le JavaScript */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-auth {
+        display: none; /* Optionnel : cache les boutons Login sur mobile pour épurer */
+    }
+}
+/* Animation de pulsation douce pour le bouton principal */
+@keyframes pulse-blue {
+    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.btn-primary {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+    animation: pulse-blue 2s infinite;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05) translateY(-3px);
+    filter: brightness(1.1);
+}
+
+/* Effet de lueur sur les cartes de stats */
+.stat-item {
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.stat-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation du Dashboard au scroll */
+.dashboard-preview {
+    transform: perspective(1000px) rotateX(10deg);
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dashboard-preview:hover {
+    transform: perspective(1000px) rotateX(0deg) scale(1.02);
+}
+/* Effet de lueur sur le texte important */
+.highlight {
+    color: #3b82f6;
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    background: linear-gradient(90.13deg, #3b82f6 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Animation fluide pour chaque lettre */
+.char {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+/* Style des cartes de stats amélioré */
+.stat-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.stat-item:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.2);
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* Curseur personnalisé (optionnel pour le côté premium) */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    filter: blur(8px);
+    transition: transform 0.1s ease;
+}
+/* On épure le style des lettres */
+.char-anim {
+    display: inline-block;
+    will-change: transform, opacity;
+    /* On retire la perspective 3D qui fait trop "jeu vidéo" */
+}
+
+/* On rend les cartes de stats plus sobres */
+.stat-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #3b82f6;
+    transform: none; /* On évite de faire bouger les blocs au survol pour rester sérieux */
+}
+
+/* Bouton principal : Animation de brillance discrète */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+    transition: 0.6s;
+}
+
+.btn-primary:hover::after {
+    left: 120%;
+}
+/* Cache la case à cocher */
+.menu-checkbox {
+    display: none;
+}
+
+/* Animation du burger en croix lors du clic */
+.menu-checkbox:checked + .menu-toggle .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-checkbox:checked + .menu-toggle .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-checkbox:checked + .menu-toggle .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Affichage du menu sur mobile */
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none; /* Cache par défaut */
+        /* ... tes styles de positionnement ... */
+    }
+
+    /* Affiche le menu quand la case est cochée */
+    .menu-checkbox:checked ~ .nav-links {
+        display: flex;
+    }
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%; /* % au lieu de px pour s'adapter à la largeur */
+    gap: 20px; /* Espace minimum entre le logo, les liens et les boutons */
+    flex-wrap: nowrap; /* On force le maintien sur une ligne sur grand écran */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: clamp(10px, 2vw, 30px); /* Espace dynamique : s'adapte entre 10px et 30px selon l'écran */
+    margin: 0 10px;
+}
+
+.nav-links li a {
+    white-space: nowrap; /* EMPÊCHE "About Us" de se couper en deux */
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+.stats {
+    display: grid;
+    /* Crée autant de colonnes de 200px que possible, sinon remplit l'espace */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 40px 5%;
+    width: 100%;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    /* S'assure que la carte ne rétrécit pas trop */
+    min-width: 150px; 
+}
+@media (max-width: 1150px) {
+    /* On affiche le burger plus tôt pour éviter la collision sur les petits laptops */
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links, .nav-auth {
+        display: none; /* Cache les liens et les boutons Login */
+    }
+    
+    /* Affiche les liens uniquement si la checkbox est cochée */
+    .menu-checkbox:checked ~ .nav-links {
+        display: flex;
+    }
+}
